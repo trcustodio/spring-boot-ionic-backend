@@ -1,8 +1,8 @@
 package com.thiagorogerio.cursomc.resources;
 
-//import java.util.ArrayList;
-//import java.util.List;
-import java.util.Optional;
+/**
+ * @author trcustodio
+ */
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +17,15 @@ import com.thiagorogerio.cursomc.services.CategoriaService;
 @RestController
 @RequestMapping(value = "/categorias")
 public class CategoriaResource {
-	
+
 	@Autowired
 	private CategoriaService categoriaService;
-	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Optional<Categoria> objeto = categoriaService.buscar(id);
+		Categoria objeto = categoriaService.buscar(id);
 		return ResponseEntity.ok().body(objeto);
-	
+
 	}
 
 }
