@@ -1,4 +1,4 @@
-package com.thiagorogerio.cursomc.repository;
+package com.thiagorogerio.cursomc.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
