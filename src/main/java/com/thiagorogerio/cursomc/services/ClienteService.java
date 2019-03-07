@@ -9,19 +9,19 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.thiagorogerio.cursomc.domain.Categoria;
-import com.thiagorogerio.cursomc.repositories.CategoriaRepository;
+import com.thiagorogerio.cursomc.domain.Cliente;
+import com.thiagorogerio.cursomc.repositories.ClienteRepository;
 import com.thiagorogerio.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class CategoriaService {
+public class ClienteService {
 
 	@Autowired
-	private CategoriaRepository categoriaRepository;
+	private ClienteRepository clienteRepository;
 	
-	public Categoria buscar(Integer id) {
-		Optional<Categoria> objeto = categoriaRepository.findById(id);
+	public Cliente buscar(Integer id) {
+		Optional<Cliente> objeto = clienteRepository.findById(id);
 		return objeto.orElseThrow(()-> new ObjectNotFoundException("Objeto não encontrado! Id: "+id
-				+", Tipo: "+Categoria.class.getName()));
+				+", Tipo: "+Cliente.class.getName()));
 	}
 }
