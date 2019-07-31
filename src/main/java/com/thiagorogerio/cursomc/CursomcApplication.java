@@ -2,7 +2,7 @@ package com.thiagorogerio.cursomc;
 
 import java.text.SimpleDateFormat;
 /**
- * @author trcustodio
+ * @author trogerio
  */
 import java.util.Arrays;
 

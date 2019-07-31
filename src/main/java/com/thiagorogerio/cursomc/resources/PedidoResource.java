@@ -1,7 +1,7 @@
 package com.thiagorogerio.cursomc.resources;
 
 /**
- * @author trcustodio
+ * @author trogerio
  */
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.thiagorogerio.cursomc.domain.Cliente;
-import com.thiagorogerio.cursomc.services.ClienteService;
+import com.thiagorogerio.cursomc.domain.Pedido;
+import com.thiagorogerio.cursomc.services.PedidoService;
 
 @RestController
-@RequestMapping(value = "/clientes")
-public class ClienteResource {
+@RequestMapping(value = "/pedidos")
+public class PedidoResource {
 
 	@Autowired
-	private ClienteService clienteService;
+	private PedidoService pedidoService;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Cliente objeto = clienteService.buscar(id);
+		Pedido objeto = pedidoService.buscar(id);
 		return ResponseEntity.ok().body(objeto);
 
 	}
