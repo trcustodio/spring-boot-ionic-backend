@@ -7,10 +7,12 @@ package com.thiagorogerio.ionic.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.thiagorogerio.ionic.domain.Categoria;
 import com.thiagorogerio.ionic.repositories.CategoriaRepository;
+import com.thiagorogerio.ionic.services.exceptions.DataIntegrityException;
 import com.thiagorogerio.ionic.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -20,8 +22,8 @@ public class CategoriaService {
 	private CategoriaRepository categoriaRepository;
 	
 	public Categoria find(Integer id) {
-		Optional<Categoria> objeto = categoriaRepository.findById(id);
-		return objeto.orElseThrow(()-> new ObjectNotFoundException("Objeto não encontrado! Id: "+id
+		Optional<Categoria> objCategoria = categoriaRepository.findById(id);
+		return objCategoria.orElseThrow(()-> new ObjectNotFoundException("Objeto não encontrado! Id: "+id
 				+", Tipo: "+Categoria.class.getName()));
 	}
 	
@@ -33,5 +35,14 @@ public class CategoriaService {
 	public Categoria update(Categoria objCategoria) {
 		find(objCategoria.getId());
 		return categoriaRepository.save(objCategoria);
+	}
+
+	public void delete(Integer id) {
+		find(id);
+		try {
+		categoriaRepository.deleteById(id);
+		}catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir uma categoria que possua produtos!");
+		}
 	}
 }
