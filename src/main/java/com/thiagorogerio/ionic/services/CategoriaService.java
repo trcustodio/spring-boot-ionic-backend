@@ -1,5 +1,7 @@
 package com.thiagorogerio.ionic.services;
 
+import java.util.List;
+
 /**
  * @author trcustodio
  */
@@ -44,5 +46,9 @@ public class CategoriaService {
 		}catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possua produtos!");
 		}
+	}
+	
+	public List<Categoria> findAll(){
+		return categoriaRepository.findAll();
 	}
 }
