@@ -1,4 +1,4 @@
-package com.thiagorogerio.ionic.resources.exceptions.handler;
+package com.thiagorogerio.ionic.resources.exceptions;
 
 import java.io.Serializable;
 
