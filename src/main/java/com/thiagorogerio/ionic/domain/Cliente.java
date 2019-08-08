@@ -23,11 +23,11 @@ import com.thiagorogerio.ionic.domain.enums.TipoCliente;
  *
  */
 @Entity
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
 	private static final long serialVersionUID = -5686431357729379912L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String email;
@@ -40,9 +40,9 @@ public class Cliente implements Serializable{
 	@ElementCollection
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
-	
+
 	@JsonIgnore
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 
 	public Cliente() {
@@ -55,7 +55,7 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 		this.email = email;
 		this.cpfoucnpj = cpfoucnpj;
-		this.tipo = tipo.getCodigo();
+		this.tipo = (tipo == null) ? null : tipo.getCodigo();
 	}
 
 	public Integer getId() {
@@ -113,7 +113,7 @@ public class Cliente implements Serializable{
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
-	
+
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}

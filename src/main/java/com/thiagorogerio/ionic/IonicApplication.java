@@ -107,7 +107,7 @@ public class IonicApplication implements CommandLineRunner {
 		estadoRepositoty.saveAll(Arrays.asList(estado1, estado2));
 		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
 
-		Cliente cliente1 = new Cliente(null, "Marai da Silva", "maria@gmail.com", "36378912377",
+		Cliente cliente1 = new Cliente(null, "Maria da Silva", "maria@gmail.com", "36378912377",
 				TipoCliente.PESSOA_FISICA);
 
 		cliente1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
