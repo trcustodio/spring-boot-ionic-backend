@@ -80,7 +80,7 @@ public class ClienteService {
 
 	public Cliente fromDTO(ClienteNewDTO objClienteNewDto) {
 		Cliente cliente = new Cliente(null, objClienteNewDto.getNome(), objClienteNewDto.getEmail(), 
-								objClienteNewDto.getCpfouCnpj(), TipoCliente.toEnum(objClienteNewDto.getTipo()));
+								objClienteNewDto.getCpfOuCnpj(), TipoCliente.toEnum(objClienteNewDto.getTipo()));
 		
 		Cidade cidade = new Cidade (objClienteNewDto.getCidadeId(), null, null);
 		
