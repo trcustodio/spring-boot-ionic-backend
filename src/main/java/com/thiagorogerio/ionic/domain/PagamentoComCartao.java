@@ -2,6 +2,7 @@ package com.thiagorogerio.ionic.domain;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.thiagorogerio.ionic.domain.enums.EstadoPagamento;
 
 /**
@@ -11,6 +12,7 @@ import com.thiagorogerio.ionic.domain.enums.EstadoPagamento;
  */
 
 @Entity
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento{
 	private static final long serialVersionUID = -5686431357729379912L;
 	
