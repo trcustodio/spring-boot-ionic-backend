@@ -1,4 +1,4 @@
-package com.thiagorogerio.ionic.domain;
+	package com.thiagorogerio.ionic.domain;
 
 import java.io.Serializable;
 

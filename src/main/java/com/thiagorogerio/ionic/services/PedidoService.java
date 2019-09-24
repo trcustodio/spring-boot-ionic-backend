@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.thiagorogerio.ionic.domain.ItemPedido;
 import com.thiagorogerio.ionic.domain.PagamentoComBoleto;
@@ -18,7 +19,6 @@ import com.thiagorogerio.ionic.domain.enums.EstadoPagamento;
 import com.thiagorogerio.ionic.repositories.ItemPedidoRepository;
 import com.thiagorogerio.ionic.repositories.PagamentoRepository;
 import com.thiagorogerio.ionic.repositories.PedidoRepository;
-import com.thiagorogerio.ionic.repositories.ProdutoRepository;
 import com.thiagorogerio.ionic.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -34,7 +34,7 @@ public class PedidoService {
 	private PagamentoRepository pagamentoRepository;
 	
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private ProdutoService produtoService;
 	
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
@@ -45,6 +45,7 @@ public class PedidoService {
 				+", Tipo: "+ Pedido.class.getName()));
 	}
 	
+	@Transactional
 	public Pedido insert(Pedido objPedido) {
 		objPedido.setId(null);
 		objPedido.setInstante(new Date());
@@ -60,7 +61,7 @@ public class PedidoService {
 		
 		for(ItemPedido itemPedido : objPedido.getItens()) {
 			itemPedido.setDesconto(0.0);
-			itemPedido.setPreco(produtoRepository.findOne(itemPedido.getProduto().getId()).getPreco());
+			itemPedido.setPreco(produtoService.find(itemPedido.getProduto().getId()).getPreco());
 			itemPedido.setPedido(objPedido);
 		}
 		

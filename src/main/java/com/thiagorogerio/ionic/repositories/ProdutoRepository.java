@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thiagorogerio.ionic.domain.Categoria;
-import com.thiagorogerio.ionic.domain.ItemPedido;
+
 import com.thiagorogerio.ionic.domain.Produto;
 
 @Repository
@@ -24,11 +24,9 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 	@Query("SELECT DISTINCT obj FROM Produto obj INNER JOIN obj.categorias cat WHERE obj.nome LIKE %:nome% AND cat IN :categorias")
 	Page<Produto> search(@Param("nome") String nome, @Param("categorias") List<Categoria> categorias,
 			Pageable pageRequest);
-	
+
 	@Transactional(readOnly = true)
 	Page<Produto> findDistinctByNomeContainingAndCategoriasIn(String nome, List<Categoria> categorias,
 			Pageable pageRequest);
-
-	ItemPedido findOne(Integer id);
 
 }
